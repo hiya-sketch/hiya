@@ -11,16 +11,20 @@ body {
 
 /* Navbar */
 .navbar {
-  background: #111;
+  background: black;
   color: white;
   padding: 15px;
-  text-align: center;
-  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart {
+  cursor: pointer;
 }
 
 /* Products */
 .products {
-  padding: 30px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -35,21 +39,14 @@ body {
 
 .card img {
   width: 100%;
-  border-radius: 10px;
 }
 
-.card button {
-  margin-top: 10px;
+button {
   padding: 8px;
-  border: none;
   background: black;
   color: white;
+  border: none;
   cursor: pointer;
-  border-radius: 5px;
-}
-
-.card button:hover {
-  background: #333;
 }
 </style>
 
@@ -58,37 +55,34 @@ body {
 <body>
 
 <div class="navbar">
-  🛒 My Online Shop
+  <div>🛒 My Shop</div>
+  <div class="cart">Cart: <span id="count">0</span></div>
 </div>
 
 <div class="products">
 
   <div class="card">
     <img src="https://via.placeholder.com/200">
-    <h3>Product 1</h3>
+    <h3>Shirt</h3>
     <p>$10</p>
-    <button onclick="buy()">Buy</button>
+    <button onclick="add()">Add to Cart</button>
   </div>
 
   <div class="card">
     <img src="https://via.placeholder.com/200">
-    <h3>Product 2</h3>
+    <h3>Shoes</h3>
     <p>$20</p>
-    <button onclick="buy()">Buy</button>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/200">
-    <h3>Product 3</h3>
-    <p>$30</p>
-    <button onclick="buy()">Buy</button>
+    <button onclick="add()">Add to Cart</button>
   </div>
 
 </div>
 
 <script>
-function buy(){
-  alert("Item added to cart 😄");
+let count = 0;
+
+function add(){
+  count++;
+  document.getElementById("count").innerText = count;
 }
 </script>
 
