@@ -1,106 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Pro Shop</title>
+<title>Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
-}
-
-/* Navbar */
-.navbar {
-  background: black;
-  color: white;
-  padding: 15px;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Products */
-.products {
-  padding: 20px;
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
   text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fade 1s;
 }
 
-.card {
-  display: inline-block;
-  width: 200px;
-  margin: 15px;
-  padding: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
 }
 
-/* Cart */
-.cart-box {
-  padding: 20px;
-  border-top: 2px solid #ccc;
+button {
+  width: 100%;
+  padding: 10px;
+  background: #4facfe;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #007bff;
+}
+
+/* Animation */
+@keyframes fade {
+  from {opacity:0; transform:translateY(-20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .box {
+    width: 90%;
+  }
 }
 </style>
 
 </head>
 
 <body>
-  <script>
-if(!localStorage.getItem("login")){
-  window.location.href = "login.html";
-}
-</script>
 
-<div class="navbar">
-  <div>🛒 My Shop</div>
-  <div>Items: <span id="count">0</span></div>
-</div>
+<div class="box">
+  <h2>Login 🔐</h2>
 
-<div class="products">
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
 
-  <div class="card">
-    <h3>Shirt</h3>
-    <p>$10</p>
-    <button onclick="add('Shirt',10)">Add</button>
-  </div>
-
-  <div class="card">
-    <h3>Shoes</h3>
-    <p>$20</p>
-    <button onclick="add('Shoes',20)">Add</button>
-  </div>
-
-</div>
-
-<div class="cart-box">
-  <h2>Cart</h2>
-  <ul id="cart"></ul>
-  <h3>Total: $<span id="total">0</span></h3>
+  <button onclick="login()">Login</button>
 </div>
 
 <script>
-let count = 0;
-let total = 0;
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
 
-function add(name, price){
-  count++;
-  total += price;
-
-  document.getElementById("count").innerText = count;
-  document.getElementById("total").innerText = total;
-
-  let li = document.createElement("li");
-  li.innerHTML = name + " - $" + price + 
-  " <button onclick='remove(this,"+price+")'>X</button>";
-
-  document.getElementById("cart").appendChild(li);
-}
-
-function remove(btn, price){
-  count--;
-  total -= price;
-
-  document.getElementById("count").innerText = count;
-  document.getElementById("total").innerText = total;
-
-  btn.parentElement.remove();
+  // Demo backend check
+  if(u=="admin" && p=="1234"){
+    localStorage.setItem("login","true");
+    window.location.href = "index.html";
+  } else {
+    alert("Wrong login ❌");
+  }
 }
 </script>
 
